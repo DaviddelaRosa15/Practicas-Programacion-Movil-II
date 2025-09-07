@@ -16,7 +16,8 @@ import com.example.diceroller.ui.theme.DiceRollerTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        /*enableEdgeToEdge()
         setContent {
             DiceRollerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -26,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
-        }
+        }*/
     }
 }
 
