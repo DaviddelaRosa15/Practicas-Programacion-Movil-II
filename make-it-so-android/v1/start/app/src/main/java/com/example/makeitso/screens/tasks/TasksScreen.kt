@@ -44,9 +44,11 @@ fun TasksScreen(
   viewModel: TasksViewModel = hiltViewModel()
 ) {
   val tasks = viewModel.tasks.collectAsStateWithLifecycle(emptyList())
+  val options by viewModel.options
 
   TasksScreenContent(
     tasks = tasks.value,
+    options = options,
     onAddClick = viewModel::onAddClick,
     onSettingsClick = viewModel::onSettingsClick,
     onTaskCheckChange = viewModel::onTaskCheckChange,
@@ -62,6 +64,7 @@ fun TasksScreen(
 @ExperimentalMaterialApi
 fun TasksScreenContent(
   tasks: List<Task>,
+  options: List<String>,
   modifier: Modifier = Modifier,
   onAddClick: ((String) -> Unit) -> Unit,
   onSettingsClick: ((String) -> Unit) -> Unit,
@@ -115,9 +118,12 @@ fun TasksScreenPreview() {
     completed = true
   )
 
+  val options = TaskActionOption.getOptions(hasEditOption = true)
+
   MakeItSoTheme {
     TasksScreenContent(
       tasks = listOf(task),
+      options = options,
       onAddClick = { },
       onSettingsClick = { },
       onTaskCheckChange = { },
