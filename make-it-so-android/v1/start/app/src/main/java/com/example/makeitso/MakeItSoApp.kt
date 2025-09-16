@@ -70,15 +70,15 @@ fun MakeItSoApp() {
             modifier = Modifier.padding(8.dp),
             snackbar = { snackbarData ->
               Snackbar(snackbarData, contentColor = MaterialTheme.colors.onPrimary)
-            },
+            }
           )
         },
-        scaffoldState = appState.scaffoldState,
+        scaffoldState = appState.scaffoldState
       ) { innerPaddingModifier ->
         NavHost(
           navController = appState.navController,
           startDestination = SPLASH_SCREEN,
-          modifier = Modifier.padding(innerPaddingModifier),
+          modifier = Modifier.padding(innerPaddingModifier)
         ) {
           makeItSoGraph(appState)
         }
@@ -105,7 +105,7 @@ fun rememberAppState(
   navController: NavHostController = rememberNavController(),
   snackbarManager: SnackbarManager = SnackbarManager,
   resources: Resources = resources(),
-  coroutineScope: CoroutineScope = rememberCoroutineScope(),
+  coroutineScope: CoroutineScope = rememberCoroutineScope()
 ) =
   remember(scaffoldState, navController, snackbarManager, resources, coroutineScope) {
     MakeItSoAppState(scaffoldState, navController, snackbarManager, resources, coroutineScope)
@@ -127,7 +127,7 @@ fun NavGraphBuilder.makeItSoGraph(appState: MakeItSoAppState) {
   composable(SETTINGS_SCREEN) {
     SettingsScreen(
       restartApp = { route -> appState.clearAndNavigate(route) },
-      openScreen = { route -> appState.navigate(route) },
+      openScreen = { route -> appState.navigate(route) }
     )
   }
 
@@ -143,14 +143,13 @@ fun NavGraphBuilder.makeItSoGraph(appState: MakeItSoAppState) {
 
   composable(
     route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",
-    arguments =
-      listOf(
-        navArgument(TASK_ID) {
-          nullable = true
-          defaultValue = null
-        }
-      ),
+    arguments = listOf(navArgument(TASK_ID) {
+      nullable = true
+      defaultValue = null
+    })
   ) {
-    EditTaskScreen(popUpScreen = { appState.popUp() })
+    EditTaskScreen(
+      popUpScreen = { appState.popUp() }
+    )
   }
 }

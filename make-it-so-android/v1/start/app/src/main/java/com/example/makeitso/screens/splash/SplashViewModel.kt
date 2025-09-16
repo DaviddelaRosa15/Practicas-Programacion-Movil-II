@@ -28,12 +28,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel
-@Inject
-constructor(
+class SplashViewModel @Inject constructor(
   configurationService: ConfigurationService,
   private val accountService: AccountService,
-  logService: LogService,
+  logService: LogService
 ) : MakeItSoViewModel(logService) {
   val showError = mutableStateOf(false)
 

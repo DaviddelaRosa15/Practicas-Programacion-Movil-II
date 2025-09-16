@@ -36,7 +36,7 @@ fun DangerousCardEditor(
   @DrawableRes icon: Int,
   content: String,
   modifier: Modifier,
-  onEditClick: () -> Unit,
+  onEditClick: () -> Unit
 ) {
   CardEditor(title, icon, content, onEditClick, MaterialTheme.colors.primary, modifier)
 }
@@ -48,7 +48,7 @@ fun RegularCardEditor(
   @DrawableRes icon: Int,
   content: String,
   modifier: Modifier,
-  onEditClick: () -> Unit,
+  onEditClick: () -> Unit
 ) {
   CardEditor(title, icon, content, onEditClick, MaterialTheme.colors.onSurface, modifier)
 }
@@ -61,16 +61,16 @@ private fun CardEditor(
   content: String,
   onEditClick: () -> Unit,
   highlightColor: Color,
-  modifier: Modifier,
+  modifier: Modifier
 ) {
   Card(
     backgroundColor = MaterialTheme.colors.onPrimary,
     modifier = modifier,
-    onClick = onEditClick,
+    onClick = onEditClick
   ) {
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.fillMaxWidth().padding(16.dp),
+      modifier = Modifier.fillMaxWidth().padding(16.dp)
     ) {
       Column(modifier = Modifier.weight(1f)) { Text(stringResource(title), color = highlightColor) }
 
@@ -90,7 +90,7 @@ fun CardSelector(
   options: List<String>,
   selection: String,
   modifier: Modifier,
-  onNewValue: (String) -> Unit,
+  onNewValue: (String) -> Unit
 ) {
   Card(backgroundColor = MaterialTheme.colors.onPrimary, modifier = modifier) {
     DropdownSelector(label, options, selection, Modifier.dropdownSelector(), onNewValue)

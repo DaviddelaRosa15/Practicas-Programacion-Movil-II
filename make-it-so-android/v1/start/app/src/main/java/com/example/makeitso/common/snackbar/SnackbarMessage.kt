@@ -22,7 +22,6 @@ import com.example.makeitso.R.string as AppText
 
 sealed class SnackbarMessage {
   class StringSnackbar(val message: String) : SnackbarMessage()
-
   class ResourceSnackbar(@StringRes val message: Int) : SnackbarMessage()
 
   companion object {

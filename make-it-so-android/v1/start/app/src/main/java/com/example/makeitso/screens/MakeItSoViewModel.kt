@@ -34,6 +34,6 @@ open class MakeItSoViewModel(private val logService: LogService) : ViewModel() {
         }
         logService.logNonFatalCrash(throwable)
       },
-      block = block,
+      block = block
     )
 }

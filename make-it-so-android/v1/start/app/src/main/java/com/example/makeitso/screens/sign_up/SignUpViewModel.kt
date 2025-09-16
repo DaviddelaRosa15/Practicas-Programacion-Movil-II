@@ -18,6 +18,8 @@ package com.example.makeitso.screens.sign_up
 
 import androidx.compose.runtime.mutableStateOf
 import com.example.makeitso.R.string as AppText
+import com.example.makeitso.SETTINGS_SCREEN
+import com.example.makeitso.SIGN_UP_SCREEN
 import com.example.makeitso.common.ext.isValidEmail
 import com.example.makeitso.common.ext.isValidPassword
 import com.example.makeitso.common.ext.passwordMatches
@@ -29,16 +31,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignUpViewModel
-@Inject
-constructor(private val accountService: AccountService, logService: LogService) :
-  MakeItSoViewModel(logService) {
+class SignUpViewModel @Inject constructor(
+  private val accountService: AccountService,
+  logService: LogService
+) : MakeItSoViewModel(logService) {
   var uiState = mutableStateOf(SignUpUiState())
     private set
 
   private val email
     get() = uiState.value.email
-
   private val password
     get() = uiState.value.password
 
@@ -71,7 +72,7 @@ constructor(private val accountService: AccountService, logService: LogService) 
     }
 
     launchCatching {
-      // TODO
+      //TODO
     }
   }
 }

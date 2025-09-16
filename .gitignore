@@ -59,3 +59,6 @@ fabric.properties
 *.bak
 *.tmp
 *.temp
+
+# Google Services (Firebase)
+**/google-services.json

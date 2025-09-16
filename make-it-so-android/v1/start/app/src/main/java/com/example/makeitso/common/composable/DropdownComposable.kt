@@ -32,25 +32,25 @@ import androidx.compose.ui.unit.dp
 fun DropdownContextMenu(
   options: List<String>,
   modifier: Modifier,
-  onActionClick: (String) -> Unit,
+  onActionClick: (String) -> Unit
 ) {
   var isExpanded by remember { mutableStateOf(false) }
 
   ExposedDropdownMenuBox(
     expanded = isExpanded,
     modifier = modifier,
-    onExpandedChange = { isExpanded = !isExpanded },
+    onExpandedChange = { isExpanded = !isExpanded }
   ) {
     Icon(
       modifier = Modifier.padding(8.dp, 0.dp),
       imageVector = Icons.Default.MoreVert,
-      contentDescription = "More",
+      contentDescription = "More"
     )
 
     ExposedDropdownMenu(
       modifier = Modifier.width(180.dp),
       expanded = isExpanded,
-      onDismissRequest = { isExpanded = false },
+      onDismissRequest = { isExpanded = false }
     ) {
       options.forEach { selectionOption ->
         DropdownMenuItem(
@@ -73,14 +73,14 @@ fun DropdownSelector(
   options: List<String>,
   selection: String,
   modifier: Modifier,
-  onNewValue: (String) -> Unit,
+  onNewValue: (String) -> Unit
 ) {
   var isExpanded by remember { mutableStateOf(false) }
 
   ExposedDropdownMenuBox(
     expanded = isExpanded,
     modifier = modifier,
-    onExpandedChange = { isExpanded = !isExpanded },
+    onExpandedChange = { isExpanded = !isExpanded }
   ) {
     TextField(
       modifier = Modifier.fillMaxWidth(),
@@ -89,7 +89,7 @@ fun DropdownSelector(
       onValueChange = {},
       label = { Text(stringResource(label)) },
       trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(isExpanded) },
-      colors = dropdownColors(),
+      colors = dropdownColors()
     )
 
     ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = { isExpanded = false }) {
@@ -117,6 +117,6 @@ private fun dropdownColors(): TextFieldColors {
     trailingIconColor = MaterialTheme.colors.onSurface,
     focusedTrailingIconColor = MaterialTheme.colors.onSurface,
     focusedLabelColor = MaterialTheme.colors.primary,
-    unfocusedLabelColor = MaterialTheme.colors.primary,
+    unfocusedLabelColor = MaterialTheme.colors.primary
   )
 }

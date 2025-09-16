@@ -40,17 +40,20 @@ fun TaskItem(
   task: Task,
   options: List<String>,
   onCheckChange: () -> Unit,
-  onActionClick: (String) -> Unit,
+  onActionClick: (String) -> Unit
 ) {
   Card(
     backgroundColor = MaterialTheme.colors.background,
     modifier = Modifier.padding(8.dp, 0.dp, 8.dp, 8.dp),
   ) {
-    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+    Row(
+      verticalAlignment = Alignment.CenterVertically,
+      modifier = Modifier.fillMaxWidth(),
+    ) {
       Checkbox(
         checked = task.completed,
         onCheckedChange = { onCheckChange() },
-        modifier = Modifier.padding(8.dp, 0.dp),
+        modifier = Modifier.padding(8.dp, 0.dp)
       )
 
       Column(modifier = Modifier.weight(1f)) {
@@ -64,7 +67,7 @@ fun TaskItem(
         Icon(
           painter = painterResource(AppIcon.ic_flag),
           tint = DarkOrange,
-          contentDescription = "Flag",
+          contentDescription = "Flag"
         )
       }
 

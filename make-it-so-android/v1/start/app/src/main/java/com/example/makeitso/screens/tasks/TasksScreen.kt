@@ -38,13 +38,16 @@ import com.example.makeitso.theme.MakeItSoTheme
 
 @Composable
 @ExperimentalMaterialApi
-fun TasksScreen(openScreen: (String) -> Unit, viewModel: TasksViewModel = hiltViewModel()) {
+fun TasksScreen(
+  openScreen: (String) -> Unit,
+  viewModel: TasksViewModel = hiltViewModel()
+) {
   TasksScreenContent(
     onAddClick = viewModel::onAddClick,
     onSettingsClick = viewModel::onSettingsClick,
     onTaskCheckChange = viewModel::onTaskCheckChange,
     onTaskActionClick = viewModel::onTaskActionClick,
-    openScreen = openScreen,
+    openScreen = openScreen
   )
 
   LaunchedEffect(viewModel) { viewModel.loadTaskOptions() }
@@ -59,7 +62,7 @@ fun TasksScreenContent(
   onSettingsClick: ((String) -> Unit) -> Unit,
   onTaskCheckChange: (Task) -> Unit,
   onTaskActionClick: ((String) -> Unit, Task, String) -> Unit,
-  openScreen: (String) -> Unit,
+  openScreen: (String) -> Unit
 ) {
   Scaffold(
     floatingActionButton = {
@@ -67,7 +70,7 @@ fun TasksScreenContent(
         onClick = { onAddClick(openScreen) },
         backgroundColor = MaterialTheme.colors.primary,
         contentColor = MaterialTheme.colors.onPrimary,
-        modifier = modifier.padding(16.dp),
+        modifier = modifier.padding(16.dp)
       ) {
         Icon(Icons.Filled.Add, "Add")
       }
@@ -78,7 +81,7 @@ fun TasksScreenContent(
         title = AppText.tasks,
         modifier = Modifier.toolbarActions(),
         endActionIcon = AppIcon.ic_settings,
-        endAction = { onSettingsClick(openScreen) },
+        endAction = { onSettingsClick(openScreen) }
       )
 
       Spacer(modifier = Modifier.smallSpacer())
@@ -89,7 +92,7 @@ fun TasksScreenContent(
             task = taskItem,
             options = listOf(),
             onCheckChange = { onTaskCheckChange(taskItem) },
-            onActionClick = { action -> onTaskActionClick(openScreen, taskItem, action) },
+            onActionClick = { action -> onTaskActionClick(openScreen, taskItem, action) }
           )
         }
       }
@@ -103,11 +106,11 @@ fun TasksScreenContent(
 fun TasksScreenPreview() {
   MakeItSoTheme {
     TasksScreenContent(
-      onAddClick = {},
-      onSettingsClick = {},
-      onTaskCheckChange = {},
+      onAddClick = { },
+      onSettingsClick = { },
+      onTaskCheckChange = { },
       onTaskActionClick = { _, _, _ -> },
-      openScreen = {},
+      openScreen = { }
     )
   }
 }

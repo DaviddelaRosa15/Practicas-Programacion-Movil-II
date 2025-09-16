@@ -17,49 +17,52 @@ import kotlin.random.Random
 
 class MakeItSoMessagingService : FirebaseMessagingService() {
 
-  private val random = Random
-
-  override fun onMessageReceived(remoteMessage: RemoteMessage) {
-    remoteMessage.notification?.let { message -> sendNotification(message) }
-  }
-
-  @OptIn(ExperimentalMaterialApi::class)
-  private fun sendNotification(message: RemoteMessage.Notification) {
-    // If you want the notifications to appear when your app is in foreground
-
-    val intent =
-      Intent(this, MakeItSoActivity::class.java).apply { addFlags(FLAG_ACTIVITY_CLEAR_TOP) }
-
-    val pendingIntent = PendingIntent.getActivity(this, 0, intent, FLAG_IMMUTABLE)
-
-    val channelId = this.getString(R.string.default_notification_channel_id)
-
-    val notificationBuilder =
-      NotificationCompat.Builder(this, channelId)
-        .setContentTitle(message.title)
-        .setContentText(message.body)
-        .setSmallIcon(R.mipmap.ic_launcher)
-        .setAutoCancel(true)
-        .setContentIntent(pendingIntent)
-
-    val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-      val channel = NotificationChannel(channelId, CHANNEL_NAME, IMPORTANCE_DEFAULT)
-      manager.createNotificationChannel(channel)
+    private val random = Random
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        remoteMessage.notification?.let { message ->
+            sendNotification(message)
+        }
     }
 
-    manager.notify(random.nextInt(), notificationBuilder.build())
-  }
+    @OptIn(ExperimentalMaterialApi::class)
+    private fun sendNotification(message: RemoteMessage.Notification) {
+        // If you want the notifications to appear when your app is in foreground
 
-  override fun onNewToken(token: String) {
-    // If you want to send messages to this application instance or
-    // manage this apps subscriptions on the server side, send the
-    // FCM registration token to your app server.
-    Log.d("FCM", "New token: $token")
-  }
+        val intent = Intent(this, MakeItSoActivity::class.java).apply {
+            addFlags(FLAG_ACTIVITY_CLEAR_TOP)
+        }
 
-  companion object {
-    const val CHANNEL_NAME = "FCM notification channel"
-  }
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, intent, FLAG_IMMUTABLE
+        )
+
+        val channelId = this.getString(R.string.default_notification_channel_id)
+
+        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+            .setContentTitle(message.title)
+            .setContentText(message.body)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setAutoCancel(true)
+            .setContentIntent(pendingIntent)
+
+        val manager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId, CHANNEL_NAME, IMPORTANCE_DEFAULT)
+            manager.createNotificationChannel(channel)
+        }
+
+        manager.notify(random.nextInt(), notificationBuilder.build())
+    }
+
+    override fun onNewToken(token: String) {
+        // If you want to send messages to this application instance or
+        // manage this apps subscriptions on the server side, send the
+        // FCM registration token to your app server.
+        Log.d("FCM","New token: $token")
+    }
+
+    companion object {
+        const val CHANNEL_NAME = "FCM notification channel"
+    }
 }

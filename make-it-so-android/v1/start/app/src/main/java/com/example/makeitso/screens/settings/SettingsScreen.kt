@@ -38,14 +38,14 @@ import com.example.makeitso.theme.MakeItSoTheme
 fun SettingsScreen(
   restartApp: (String) -> Unit,
   openScreen: (String) -> Unit,
-  viewModel: SettingsViewModel = hiltViewModel(),
+  viewModel: SettingsViewModel = hiltViewModel()
 ) {
   SettingsScreenContent(
     uiState = viewModel.uiState,
     onLoginClick = { viewModel.onLoginClick(openScreen) },
     onSignUpClick = { viewModel.onSignUpClick(openScreen) },
     onSignOutClick = { viewModel.onSignOutClick(restartApp) },
-    onDeleteMyAccountClick = { viewModel.onDeleteMyAccountClick(restartApp) },
+    onDeleteMyAccountClick = { viewModel.onDeleteMyAccountClick(restartApp) }
   )
 }
 
@@ -57,18 +57,20 @@ fun SettingsScreenContent(
   onLoginClick: () -> Unit,
   onSignUpClick: () -> Unit,
   onSignOutClick: () -> Unit,
-  onDeleteMyAccountClick: () -> Unit,
+  onDeleteMyAccountClick: () -> Unit
 ) {
   Column(
     modifier = modifier.fillMaxWidth().fillMaxHeight().verticalScroll(rememberScrollState()),
-    horizontalAlignment = Alignment.CenterHorizontally,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
     BasicToolbar(AppText.settings)
 
     Spacer(modifier = Modifier.spacer())
 
     if (uiState.isAnonymousAccount) {
-      RegularCardEditor(AppText.sign_in, AppIcon.ic_sign_in, "", Modifier.card()) { onLoginClick() }
+      RegularCardEditor(AppText.sign_in, AppIcon.ic_sign_in, "", Modifier.card()) {
+        onLoginClick()
+      }
 
       RegularCardEditor(AppText.create_account, AppIcon.ic_create_account, "", Modifier.card()) {
         onSignUpClick()
@@ -100,7 +102,7 @@ private fun SignOutCard(signOut: () -> Unit) {
           showWarningDialog = false
         }
       },
-      onDismissRequest = { showWarningDialog = false },
+      onDismissRequest = { showWarningDialog = false }
     )
   }
 }
@@ -114,7 +116,7 @@ private fun DeleteMyAccountCard(deleteMyAccount: () -> Unit) {
     AppText.delete_my_account,
     AppIcon.ic_delete_my_account,
     "",
-    Modifier.card(),
+    Modifier.card()
   ) {
     showWarningDialog = true
   }
@@ -130,7 +132,7 @@ private fun DeleteMyAccountCard(deleteMyAccount: () -> Unit) {
           showWarningDialog = false
         }
       },
-      onDismissRequest = { showWarningDialog = false },
+      onDismissRequest = { showWarningDialog = false }
     )
   }
 }
@@ -144,10 +146,10 @@ fun SettingsScreenPreview() {
   MakeItSoTheme {
     SettingsScreenContent(
       uiState = uiState,
-      onLoginClick = {},
-      onSignUpClick = {},
-      onSignOutClick = {},
-      onDeleteMyAccountClick = {},
+      onLoginClick = { },
+      onSignUpClick = { },
+      onSignOutClick = { },
+      onDeleteMyAccountClick = { }
     )
   }
 }

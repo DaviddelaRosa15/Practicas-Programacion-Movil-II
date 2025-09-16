@@ -32,7 +32,7 @@ class MakeItSoAppState(
   val navController: NavHostController,
   private val snackbarManager: SnackbarManager,
   private val resources: Resources,
-  coroutineScope: CoroutineScope,
+  coroutineScope: CoroutineScope
 ) {
   init {
     coroutineScope.launch {

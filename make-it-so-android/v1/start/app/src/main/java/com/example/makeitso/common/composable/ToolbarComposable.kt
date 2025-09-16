@@ -37,7 +37,7 @@ fun ActionToolbar(
   @StringRes title: Int,
   @DrawableRes endActionIcon: Int,
   modifier: Modifier,
-  endAction: () -> Unit,
+  endAction: () -> Unit
 ) {
   TopAppBar(
     title = { Text(stringResource(title)) },
@@ -48,7 +48,7 @@ fun ActionToolbar(
           Icon(painter = painterResource(endActionIcon), contentDescription = "Action")
         }
       }
-    },
+    }
   )
 }
 

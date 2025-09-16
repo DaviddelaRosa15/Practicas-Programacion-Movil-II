@@ -43,7 +43,10 @@ import com.google.android.material.timepicker.TimeFormat
 
 @Composable
 @ExperimentalMaterialApi
-fun EditTaskScreen(popUpScreen: () -> Unit, viewModel: EditTaskViewModel = hiltViewModel()) {
+fun EditTaskScreen(
+  popUpScreen: () -> Unit,
+  viewModel: EditTaskViewModel = hiltViewModel()
+) {
   val task by viewModel.task
   val activity = LocalContext.current as AppCompatActivity
 
@@ -57,7 +60,7 @@ fun EditTaskScreen(popUpScreen: () -> Unit, viewModel: EditTaskViewModel = hiltV
     onTimeChange = viewModel::onTimeChange,
     onPriorityChange = viewModel::onPriorityChange,
     onFlagToggle = viewModel::onFlagToggle,
-    activity = activity,
+    activity = activity
   )
 }
 
@@ -74,17 +77,17 @@ fun EditTaskScreenContent(
   onTimeChange: (Int, Int) -> Unit,
   onPriorityChange: (String) -> Unit,
   onFlagToggle: (String) -> Unit,
-  activity: AppCompatActivity?,
+  activity: AppCompatActivity?
 ) {
   Column(
     modifier = modifier.fillMaxWidth().fillMaxHeight().verticalScroll(rememberScrollState()),
-    horizontalAlignment = Alignment.CenterHorizontally,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
     ActionToolbar(
       title = AppText.edit_task,
       modifier = Modifier.toolbarActions(),
       endActionIcon = AppIcon.ic_check,
-      endAction = { onDoneClick() },
+      endAction = { onDoneClick() }
     )
 
     Spacer(modifier = Modifier.spacer())
@@ -108,7 +111,7 @@ private fun CardEditors(
   task: Task,
   onDateChange: (Long) -> Unit,
   onTimeChange: (Int, Int) -> Unit,
-  activity: AppCompatActivity?,
+  activity: AppCompatActivity?
 ) {
   RegularCardEditor(AppText.date, AppIcon.ic_calendar, task.dueDate, Modifier.card()) {
     showDatePicker(activity, onDateChange)
@@ -124,7 +127,7 @@ private fun CardEditors(
 private fun CardSelectors(
   task: Task,
   onPriorityChange: (String) -> Unit,
-  onFlagToggle: (String) -> Unit,
+  onFlagToggle: (String) -> Unit
 ) {
   val prioritySelection = Priority.getByName(task.priority).name
   CardSelector(AppText.priority, Priority.getOptions(), prioritySelection, Modifier.card()) {
@@ -161,20 +164,24 @@ private fun showTimePicker(activity: AppCompatActivity?, onTimeChange: (Int, Int
 @ExperimentalMaterialApi
 @Composable
 fun EditTaskScreenPreview() {
-  val task = Task(title = "Task title", description = "Task description", flag = true)
+  val task = Task(
+    title = "Task title",
+    description = "Task description",
+    flag = true
+  )
 
   MakeItSoTheme {
     EditTaskScreenContent(
       task = task,
-      onDoneClick = {},
-      onTitleChange = {},
-      onDescriptionChange = {},
-      onUrlChange = {},
-      onDateChange = {},
+      onDoneClick = { },
+      onTitleChange = { },
+      onDescriptionChange = { },
+      onUrlChange = { },
+      onDateChange = { },
       onTimeChange = { _, _ -> },
-      onPriorityChange = {},
-      onFlagToggle = {},
-      activity = null,
+      onPriorityChange = { },
+      onFlagToggle = { },
+      activity = null
     )
   }
 }

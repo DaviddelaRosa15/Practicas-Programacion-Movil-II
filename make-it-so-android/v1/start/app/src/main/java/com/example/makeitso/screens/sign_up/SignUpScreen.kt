@@ -33,7 +33,7 @@ import com.example.makeitso.theme.MakeItSoTheme
 @Composable
 fun SignUpScreen(
   openAndPopUp: (String, String) -> Unit,
-  viewModel: SignUpViewModel = hiltViewModel(),
+  viewModel: SignUpViewModel = hiltViewModel()
 ) {
   val uiState by viewModel.uiState
 
@@ -42,7 +42,7 @@ fun SignUpScreen(
     onEmailChange = viewModel::onEmailChange,
     onPasswordChange = viewModel::onPasswordChange,
     onRepeatPasswordChange = viewModel::onRepeatPasswordChange,
-    onSignUpClick = { viewModel.onSignUpClick(openAndPopUp) },
+    onSignUpClick = { viewModel.onSignUpClick(openAndPopUp) }
   )
 }
 
@@ -53,7 +53,7 @@ fun SignUpScreenContent(
   onEmailChange: (String) -> Unit,
   onPasswordChange: (String) -> Unit,
   onRepeatPasswordChange: (String) -> Unit,
-  onSignUpClick: () -> Unit,
+  onSignUpClick: () -> Unit
 ) {
   val fieldModifier = Modifier.fieldModifier()
 
@@ -62,28 +62,32 @@ fun SignUpScreenContent(
   Column(
     modifier = modifier.fillMaxWidth().fillMaxHeight().verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
     EmailField(uiState.email, onEmailChange, fieldModifier)
     PasswordField(uiState.password, onPasswordChange, fieldModifier)
     RepeatPasswordField(uiState.repeatPassword, onRepeatPasswordChange, fieldModifier)
 
-    BasicButton(AppText.create_account, Modifier.basicButton()) { onSignUpClick() }
+    BasicButton(AppText.create_account, Modifier.basicButton()) {
+      onSignUpClick()
+    }
   }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun SignUpScreenPreview() {
-  val uiState = SignUpUiState(email = "email@test.com")
+  val uiState = SignUpUiState(
+    email = "email@test.com"
+  )
 
   MakeItSoTheme {
     SignUpScreenContent(
       uiState = uiState,
-      onEmailChange = {},
-      onPasswordChange = {},
-      onRepeatPasswordChange = {},
-      onSignUpClick = {},
+      onEmailChange = { },
+      onPasswordChange = { },
+      onRepeatPasswordChange = { },
+      onSignUpClick = { }
     )
   }
 }

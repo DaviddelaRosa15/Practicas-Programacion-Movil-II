@@ -30,9 +30,7 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class EditTaskViewModel
-@Inject
-constructor(
+class EditTaskViewModel @Inject constructor(
   savedStateHandle: SavedStateHandle,
   logService: LogService,
   private val storageService: StorageService,
@@ -42,7 +40,9 @@ constructor(
   init {
     val taskId = savedStateHandle.get<String>(TASK_ID)
     if (taskId != null) {
-      launchCatching { task.value = storageService.getTask(taskId.idFromParameter()) ?: Task() }
+      launchCatching {
+        task.value = storageService.getTask(taskId.idFromParameter()) ?: Task()
+      }
     }
   }
 

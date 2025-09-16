@@ -41,11 +41,11 @@ private const val SPLASH_TIMEOUT = 1000L
 @Composable
 fun SplashScreen(
   openAndPopUp: (String, String) -> Unit,
-  viewModel: SplashViewModel = hiltViewModel(),
+  viewModel: SplashViewModel = hiltViewModel()
 ) {
   SplashScreenContent(
     onAppStart = { viewModel.onAppStart(openAndPopUp) },
-    shouldShowError = viewModel.showError.value,
+    shouldShowError = viewModel.showError.value
   )
 }
 
@@ -53,17 +53,17 @@ fun SplashScreen(
 fun SplashScreenContent(
   modifier: Modifier = Modifier,
   onAppStart: () -> Unit,
-  shouldShowError: Boolean,
+  shouldShowError: Boolean
 ) {
   Column(
     modifier =
-      modifier
-        .fillMaxWidth()
-        .fillMaxHeight()
-        .background(color = MaterialTheme.colors.background)
-        .verticalScroll(rememberScrollState()),
+    modifier
+      .fillMaxWidth()
+      .fillMaxHeight()
+      .background(color = MaterialTheme.colors.background)
+      .verticalScroll(rememberScrollState()),
     verticalArrangement = Arrangement.Center,
-    horizontalAlignment = Alignment.CenterHorizontally,
+    horizontalAlignment = Alignment.CenterHorizontally
   ) {
     if (shouldShowError) {
       Text(text = stringResource(AppText.generic_error))
@@ -83,5 +83,10 @@ fun SplashScreenContent(
 @Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
-  MakeItSoTheme { SplashScreenContent(onAppStart = {}, shouldShowError = true) }
+  MakeItSoTheme {
+    SplashScreenContent(
+      onAppStart = { },
+      shouldShowError = true
+    )
+  }
 }
