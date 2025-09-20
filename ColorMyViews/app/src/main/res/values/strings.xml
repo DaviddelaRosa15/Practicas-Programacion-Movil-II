@@ -11,4 +11,5 @@ limitations under the License. -->
 
 <resources>
     <string name="app_name">Color My Views</string>
+    <string name="box_one">Box One</string>
 </resources>
